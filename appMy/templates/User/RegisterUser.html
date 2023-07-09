@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block css %}
+   <link rel="stylesheet" href="../static/css/product.css">
+   <link rel="stylesheet" href="../static/css/Anasayfa.css"> 
+{% endblock css %}
+{% block body %}
+     <!-- container div -->
+	<div class="container">
+
+		<!-- upper button section to select
+			the login or signup form -->
+		
+		<div class="btna">
+			<p style="font-size: 30px; text-align: center; margin-top: 13px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Giriş Yap</p>
+			
+		</div>
+		
+		{% if messages %}
+			<ul style="list-style-type: none;">
+				{% for i in messages %}
+					<li class="text-start" style="color: red;">{{ i }}</li>   
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+                       
+		<!-- Form section that contains the
+			login and the signup form -->
+		<div class="form-sectiona " style="margin-left: 380px; margin-top: 120px;">
+
+			<!-- login form -->
+			
+
+
+			<form method="POST">
+				{% csrf_token %}
+				<div class="login-boxa" >
+					<input name="name" type="text" class="emaila elea" style="padding: 15px;"placeholder="İsim">
+					<input name="surname" type="text" class="emaila elea"  style="padding: 15px;" placeholder="Soyisim">
+					<input name="username" type="text" class="emaila elea"  style="padding: 15px;" placeholder="Kullanıcı Adı">
+					<input name="email" type="email" class="emaila elea"  style="padding: 15px;" placeholder="Mailiniz">
+					<input name="password1" type="password" class="emaila elea"  style="padding: 15px;" placeholder="Şifre">
+					<input name="password2" type="password" class="passworda elea"  style="padding: 15px;" placeholder="Şifre Tekrarı">
+					<button type="submit" class="clkbtna" style="margin-top: -20px;" href="Anasayfa.html">Kayıt Ol</button>
+						   
+				</div>
+			</form>
+
+			
+		</div>
+	</div>
+{% endblock body %}
+    
+  
+   

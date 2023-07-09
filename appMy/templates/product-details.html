@@ -1,0 +1,345 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+   <link rel="stylesheet" href="{% static 'css/product.css' %}">
+   <link rel="stylesheet" href="{% static 'css/Anasayfa.css' %}"> 
+   <style>
+    .colorradio + label{
+        border: 4px solid black !important;
+    }
+    .sizeradio,.colorradio{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
+    .sizeradio:checked + label{
+        background: #b2b2b2 !important;
+        box-shadow: inset 0px 0px 8px 4px #00000060;
+    }
+    .colorradio:checked + label{
+        box-shadow: inset 0px 0px 8px 15px #00000060;
+        border: 4px solid gray !important;
+    }
+    
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 20px;
+        width: 100%;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border-radius: 6px;
+        
+    }
+
+    .comment-box{
+        
+        padding:5px;
+    }
+
+
+
+    .comment-area textarea{
+    resize: none; 
+    }
+
+
+    .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #ffffff;
+        outline: 0;
+        box-shadow: 0 0 0 1px rgb(255, 136, 0) !important;
+    }
+
+    .send {
+        color: #fff;
+        background-color: #ff9d00;
+        border-color: #ff9d00;
+    }
+
+    .send:hover {
+        color: #fff;
+        background-color: #ff9d00;
+        border-color: #ff9d00;
+    }
+
+
+    .rating {
+    display: flex;
+            margin-top: -10px;
+        flex-direction: row-reverse;
+        margin-left: -4px;
+            float: left;
+    }
+
+    .rating>input {
+        display: none
+    }
+
+    .star,.star-full{
+        position: relative;
+        width: 25px;
+        font-size: 30px !important;
+        color: #ff9d00;
+        cursor: pointer;
+    }
+    .star-full::before {
+        content: "\2605";
+        position: absolute;
+        opacity: 1
+    }
+    
+    .rating>label {
+        position: relative;
+        width: 30px;
+        font-size: 35px !important;
+        color: #ff9d00;
+        cursor: pointer;
+    }
+
+    .rating>label::before {
+        content: "\2605";
+        position: absolute;
+        opacity: 0
+    }
+
+    .rating>label:hover:before,
+    .rating>label:hover~label:before {
+        opacity: 1 !important
+    }
+
+    .rating>input:checked~label:before {
+        opacity: 1
+    }
+
+    .rating:hover>input:checked~label:before {
+        opacity: 0.4
+    }
+</style>
+{% endblock css %}
+    
+
+
+{% block body %}
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    
+                    <div class="preview-pic tab-content">
+                        
+                        {% if product.images %}
+                        <div class="tab-pane active" id="pic-1"><img src="{{ product.images.first.image.url }}" /></div>
+                        
+                        {% else %}
+                        <div class="tab-pane active" id="pic-1"><img src="{{ product.img.url }}" /></div>
+                            
+                        {% endif %}
+                            
+                      
+                    </div>
+                   
+                    
+                </div>
+                <div class="details col-md-6">
+                    
+                    {% if product.product %}
+                    <h3 class="product-title">{{ product.product.title }}</h3>
+                    
+                    {% else %}
+                    <h3 class="product-title">{{ product.title }}</h3>
+                        
+                    {% endif %}
+                        
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                       
+                    </div>
+                    
+                    {% if  product.product %}
+                    <p class="product-description"> {{ product.product.text }}</p>
+                    <p class="vote">{{ product.product.detail }}</p>
+                    
+                    {% else %}
+                    <p class="product-description"> {{ product.text }}</p>
+                    <ul>
+                        {{ product.list|safe }}
+                    </ul>
+                    {% endif %}
+                    {% if  product.product %}
+                    <p class="h3 py-2 text-warning fw-bold" id="productprice">₺{{ product.sizeletter.first.price }}</p>
+                    
+                    {% else %}
+                    <p class="h3 py-2 text-warning fw-bold" id="productprice">₺{{ product.price }}</p>
+                    {% endif %}
+                        
+                   
+                    
+                    <form name="formdetay" method="POST" id="formdetay">
+                        {% csrf_token %}
+                        <input type="hidden" name="product-title" value="Activewear">
+                        <div class="row">
+                            <div class="col-auto w-100">
+                                {% for i in product.product.colors.all %}
+                                <ul class="list-inline pb-3">
+                                    <li class="list-inline-item">Renkler :
+                                    </li>
+                                    
+                                    <li class="list-inline-item">
+                                        <input type="radio" name="color" onclick="productColor(this.value)" required value="{{ i.styletitle }}" id="{{ i.styletitle }}" class="colorradio">
+                                        <label for="{{ i.styletitle }}" class="btn btn-success bg-{{ i.styletitle }} px-3 py-4"></label>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-auto">
+                                
+                                {% if  product.product %}
+                                <ul class="list-inline pb-3">
+                                    <li class="list-inline-item">Size :</li>
+                                    
+                                    <li class="list-inline-item">
+                                        <input type="radio" name="size" onclick="productSize(this.value)" value="S" required id="sizeS" class="sizeradio">
+                                        <label for="sizeS" class="btn btn-warning">S</label>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <input type="radio" name="size" onclick="productSize(this.value)" value="M" required id="sizeM" class="sizeradio">
+                                        <label for="sizeM" class="btn btn-warning">M</label>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <input type="radio" name="size" onclick="productSize(this.value)" value="L" required id="sizeL" class="sizeradio">
+                                        <label for="sizeL" class="btn btn-warning">L</label>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <input type="radio" name="size" onclick="productSize(this.value)" value="XL" required id="sizeXL" class="sizeradio">
+                                        <label for="sizeXL" class="btn btn-warning">XL</label>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <input type="radio" name="size" onclick="productSize(this.value)" value="XXL" required id="sizeXXL" class="sizeradio">
+                                        <label for="sizeXXL" class="btn btn-warning">XXL</label>
+                                    </li>
+                                    
+                                </ul>
+                    
+                    {% else %}
+                  
+                    {% endif %}
+
+                            </div>
+                            <div class="col-auto">
+                                <ul class="list-inline pb-3">
+                                    <li class="list-inline-item text-right">
+                                        Adet
+                                        <input type="hidden" name="count" id="product-quanity" value="1">
+                                    </li>
+                                    <li class="list-inline-item"><span class="btn btn-warning" id="btn-minus">-</span></li>
+                                    <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
+                                    <li class="list-inline-item"><span class="btn btn-warning" id="btn-plus">+</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        {% if request.user.is_authenticated %}
+                        <div class="row pb-3">
+                            <div class="col d-grid">
+                                <button type="submit" class="btn btn-warning btn-lg" name="submit" value="buy" href="{% url 'sepet' %}">Sepete Ekle</button>
+                            </div>
+                            <div class="col d-grid">
+                                <button type="submit" class="btn btn-warning btn-lg" name="submit" value="addtocard" href="{% url 'sepet' %}">Add To Cart</button>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row pb-3">
+                            <div class="col d-grid">
+                                <a class="nav-link text-primary" href="{% url 'loginUser' %}">Giriş Yap</a>
+                            </div>
+                            <div class="col d-grid">
+                                <a class="nav-link text-primary" href="{% url 'RegisterUser' %}">Kayıt Ol</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                            
+                    </form>
+                    <script>
+                        let listprice = "{{ listprice }}".replace("[","").replace("]","").trim().split(", ");
+                        let listsize = "{{ listsize|safe }}".replace(/'/g, '').replace("[", "").replace("]", "").split(", ");
+                        let listcolor = "{{ listcolor|safe }}".replace(/'/g, '').replace("[", "").replace("]", "").split(", ");
+                        var productprice = document.getElementById("productprice");
+                        var productsize, productcolor;
+                        var colors = [];
+
+                        console.log(listprice);
+                        console.log(listsize);
+                        console.log(listcolor);
+
+                        productSize = (size)=>{
+                            productsize = size.toLowerCase();
+                            productPrice();
+                            disableColor();
+                        }
+                        productColor = (color)=>{
+                            productcolor = color;
+                            productPrice();
+                        }
+
+                        productPrice = ()=>{
+                            for (i = 0; i < listprice.length; i++) {
+                                if (listsize[i] === productsize && listcolor[i] === productcolor) {
+                                    productprice.innerText = "₺"+listprice[i] 
+                                }
+                            }
+                        }
+
+                        disableColor = ()=>{
+                            var colorradio = document.querySelectorAll(".colorradio")
+                            for (i = 0; i < listprice.length/2; i++){
+                                colorradio[i].setAttribute('disabled', '');
+                                
+                            }
+                            for (i = 0; i < listprice.length; i++) {
+                                if(listsize[i] == productsize){
+                                    console.log("asd");
+                                    document.getElementById(listcolor[i]).removeAttribute("disabled"); 
+                                }
+                            }
+                        }
+                        
+                        if (productsize != undefined && productcolor != undefined){
+                        }
+                        
+                    </script>
+                    
+                        
+                  
+                   
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block js %}
+<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/templatemo.js' %}"></script> 
+<!-- <script src="{% static 'js/custom.js' %}"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+{% endblock js %}
+    
+{% endblock body %}
+    

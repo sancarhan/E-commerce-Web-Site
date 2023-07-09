@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Anasayfa.css"> 
+{% endblock css %}
+  
+
+  
+
+{% block body %}
+  <!-- orta -->
+<div class=" container-fluid orta">
+  <div class="row">
+      <!-- sidebar -->
+  <div class="sidebar col-lg-3 mt-3">
+      <h3>KATAGORİLER</h3>
+      <!-- Akordiyon -->
+        <button class="accordion">Protein Tozu Aromaları</button>
+              <div class="panel">
+                <form class="box">
+                  <input type="checkbox" value="urun"> Çikolatalı
+                  <br>
+                  <input type="checkbox" value="urun"> Kurabiyeli
+                  <br>
+                  <input type="checkbox" value="urun"> Çilekli
+                  <br>
+                  <input type="checkbox" value="urun"> Muzlu
+                  <br>
+                  <input type="checkbox" value="urun"> Vanilyalı
+                </form>
+                
+              </div>
+              <button class="accordion">BCAA Aromaları</button>
+              <div class="panel">
+                <form class="box">
+                  <input type="checkbox" value="urun"> Şeftali
+                  <br>
+                  <input type="checkbox" value="urun"> Limon
+                  <br>
+                  <input type="checkbox" value="urun"> Karpuzlu
+                  <br>
+                  <input type="checkbox" value="urun"> Çilekli
+                  <br>
+                  <input type="checkbox" value="urun"> Orman Meyveli
+                </form>
+                </div>
+              <button class="accordion">Amino Asitler</button>
+              <div class="panel">
+                <form class="box">
+                  <input type="checkbox" value="urun"> L-Carnitine
+                  <br>
+                  <input type="checkbox" value="urun"> Amino Asit
+                  <br>
+                  <input type="checkbox" value="urun"> Arginine
+                  <br>
+                  <input type="checkbox" value="urun"> Creatin
+                  <br>
+                  <input type="checkbox" value="urun"> Glutamine
+                </form>
+              </div>
+              <button class="accordion">Multi Vitamin Ve Mineraller</button>
+              <div class="panel">
+                <form class="box">
+                  <input type="checkbox" value="urun"> A ve B Vitaminler
+                  <br>
+                  <input type="checkbox" value="urun"> D ve K Vitaminler
+                  <br>
+                  <input type="checkbox" value="urun"> Çinko ve Magneziyum
+                  <br>
+                  <input type="checkbox" value="urun"> Kalsiyum
+                  <br>
+                  <input type="checkbox" value="urun"> C Vitamini ve Balık Yağı
+                </form>
+              </div>
+              <button class="accordion">Proteinli Atıştırmalar</button>
+              <div class="panel">
+                <form class="box">
+                  <input type="checkbox" value="urun"> Protein Barlar
+                  <br>
+                  <input type="checkbox" value="urun"> Proteinli Makarnalar
+                  <br>
+                  <input type="checkbox" value="urun"> Kurabiyeler
+                  <br>
+                  <input type="checkbox" value="urun"> Proteinli İçecekler
+                  <br>
+                  <input type="checkbox" value="urun"> Proteinli Kraker
+                </form>
+              </div>
+              <button class="accordion">Örnek Programlar</button>
+              <div class="panel">
+                <form class="box">
+                  <input type="checkbox" value="urun"> PPL Programları
+                  <br>
+                  <input type="checkbox" value="urun"> Full Body Programlar
+                  <br>
+                  <input type="checkbox" value="urun"> Güç Ve Dayanıklılık Programları
+                  <br>
+                  <input type="checkbox" value="urun"> Yağ Yakım Programları
+                  <br>
+                  <input type="checkbox" value="urun"> Kardio Programlar
+                </form>
+              </div>
+              <button class="accordion">Giyim</button>
+              <div class="panel">
+                <form class="box">
+                  <input type="checkbox" value="urun"> Erkek Tişört
+                  <br>
+                  <input type="checkbox" value="urun"> Kadın Tişört
+                  <br>
+                  <input type="checkbox" value="urun"> Sporcu Atletleri
+                  <br>
+                  <input type="checkbox" value="urun"> Eldivenler
+                  <br>
+                  <input type="checkbox" value="urun"> Alt Giyim
+                </form>
+              </div>
+              <button class="artbtn">Arat</button>
+              <!-- Akordiyon bitiş -->
+        <div class="list-group ">
+          <a class="animate" href="{% url 'whey' %}">Whey Proteinler</a>
+          <hr>
+          <a  class="animate" href="{% url 'casein' %}">Kazein Proteinler</a>
+          <hr>
+          <a  class="animate" href="{% url 'soya' %}">Soya Proteinler</a>
+          <hr>
+          <a  class="animate" href="{% url 'bcaa' %}">BCAA</a>
+          <hr>
+          <a  class="animate" href="{% url 'creatin' %}">Creatin</a>
+          <hr>
+          <a  class="animate" href="{% url 'carnitine' %}">L-Carnitine</a>
+          <hr>
+          <a  class="animate" href="{% url 'amino' %}">Amino Asitler</a>
+          <hr>
+          <a  class="animate" href="{% url 'kafein' %}">Enerji ve Dayanıklılık</a>
+          <hr>
+          <a  class="animate" href="{% url 'vitamin' %}">Multi Vitaminler ve Mineraller</a>
+          <hr>
+          <a  class="animate" href="{% url 'aksesuar' %}">Aksesuar</a>
+          
+        </div>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade mt-2" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../static/img/slider1.jpg" class="d-block w-100" alt="resim12">
+            </div>
+            <div class="carousel-item">
+              <img src="../static/img/slider2.jpg" class="d-block w-100" alt="resim13">
+            </div>
+            <div class="carousel-item">
+              <img src="../static/img/slider3.jpg" class="d-block w-100" alt="resim14">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="list-group">
+          <a  class="animate" href="{% url 'yagyakım' %}">Nasıl Yağ Yakabiliriz ?</a>
+          <hr>
+          <a  class="animate" href="{% url 'hıt' %}">Hit cardsio Plan</a>
+          <hr>
+          <a  class="animate" href="{% url 'guc' %}">Güç Ve Kuvvet Antrenmanları</a>
+          <hr>
+          <a  class="animate" href="{% url 'ppl' %}">PPL Programları</a>
+          <hr>
+          <a  class="animate" href="{% url 'full' %}">Full-Body Programlar</a>
+          <hr>
+          <a  class="animate" href="{% url 'ılerı' %}">İleri Seviye 5x5 Programlar</a>
+          <hr>
+          <a  class="animate" href="{% url 'secım' %}">Ağırlık Seçimleri Neye Göre Olmalı ?</a>
+          <hr>
+          <a  class="animate" href="{% url 'gun' %}">Haftanın Kaç Günü Antrenman Yapılmalı ?</a>
+          <hr>
+          <a  class="animate" href="{% url 'nasıl' %}">Yağ Yakım Antrenman</a>
+          <hr>
+          <a  class="animate" href="{% url 'makro' %}">Makrolar Nedir ?</a>
+           
+         </div>
+         <div id="carouselExampleIndicators" class="carousel slide mt-2" data-bs-ride="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../static/img/slider4.jpg" class="d-block w-100" alt="resim15">
+            </div>
+            <div class="carousel-item">
+              <img src="../static/img/slider5.png" class="d-block w-100" alt="resim16">
+            </div>
+            <div class="carousel-item">
+              <img src="../static/img/slider6.png" class="d-block w-100" alt="resim17">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+  </div>
+
+
+
+
+
+
+
+  <!-- slider -->
+  <div class="slider col-lg-9 mt-3">
+      <h3>{{ title }}</h3>
+      <!-- ÜRÜNLER -->
+      
+      
+      <div style="margin-top: -50px;"  class=" container-fluid ekran1 row  mt-1  col-sm-6">
+        {% for i in products %}
+      <div class="col-lg-3  col-sm-6 ">
+        <div class="container text-center " >
+                 <div class="cards">
+                   <div class="face face1">
+                       <div class="content">
+                        
+                        {% for j in i.images.all %}
+                        <img src="{{ j.image.url }}" alt="resim">
+                        {% endfor %}
+                          
+                           
+                         
+                       </div>
+                   </div>
+                   <div class="face face2">
+                       <div class="content">
+                        <p>{{ i.product.title }}</p>
+                        <p > {{ i.product.price }} ₺</p>
+                           
+                               <a href="{% url 'productDetails' i.product.slug %}">Ürünü İncele</a>
+                       </div>
+                   </div>
+               </div>
+              </div>
+            </div>
+            
+            {% endfor %}
+          </div>
+      
+     
+        
+        
+         
+      <!-- ÜRÜNLER BİTİŞ -->
+      <!-- carousel -->
+     
+  </div>
+                           
+   </div>
+</div>
+  
+  
+
+
+
+  <script>
+   
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+
+this.classList.toggle("activess");
+
+
+var panel = this.nextElementSibling;
+if (panel.style.display === "block") {
+  panel.style.display = "none";
+} else {
+  panel.style.display = "block";
+}
+});
+}
+
+</script>
+
+
+ 
+{% endblock body %}
+  

@@ -1,0 +1,87 @@
+  {% load static %}
+  
+  {% block css %}
+  <style>
+    .ilk:hover{
+      background-color: black;
+
+    }
+  </style>
+    
+  {% endblock css %}
+    
+  <!-- header -->
+  <header class="headar">
+    <div class="header_bir">
+         
+        <div class="iletişim col-lg-10">
+            <a href="#" class="fb"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="tw"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="lin"><i class="fa fa-linkedin"></i></a>
+            <a href="#" class="drb"><i class="fa fa-dribbble"></i></a>
+            <a href="#" class="gg"><i class="fa fa-google-plus"></i></a>
+            <a href="#" class="ins"><i class="fa fa-instagram"></i></a>
+            
+        </div>
+    </div>
+    <div class="header_iki">
+        <div class="col-lg-12 logo">
+            <img src="{% static 'img/logo4.png' %}" alt="Resim">
+        </div>
+    </div>
+    <div class="header_uc">
+        <nav class="navbar navbar-expand-lg buton">
+            <div class="container-fluid">
+            
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link text-dark main " href="{% url 'index' %}">Anasayfa</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-dark main " href="{% url 'ürünler' %}">Ürünler</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-dark main " href="{% url 'iletişim' %}">İletişim</a>
+                  </li>                      
+                </ul>
+                
+                {% if request.user.is_authenticated %}
+               
+                
+               
+                <div class="dropdown">
+                 
+                  <a class="btn text-white dropdown-toggle" href="#" role="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ request.user }}
+                     
+                  </a>
+                  <ul class="dropdown-menu btn">
+                      <li><a class="dropdown-item ilk" style="color: white;" href="{% url 'changePasswordUser' %}">Şifre Değiştir</a></li>
+                      <li><a class="dropdown-item ilk" style="color: white;" href="{% url 'logoutUser' %}">Çıkış Yap</a></li>
+                  </ul>
+              </div>
+                
+                <a href="{% url 'sepet' %}" class="btn text-white">Sepetim</a>
+               
+               
+                  {% else %}
+                  <a href="{% url 'loginUser' %}" class="btn text-white">Giriş / Kayıt Ol</a>
+                 
+                {% endif %}
+                  
+                
+               
+                <form method="GET" action="{% url 'index' %}" class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" name="query" placeholder="Site de arat" aria-label="Search">
+                  <button class="btn text-white" type="submit">Ara</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </div>
+</header>

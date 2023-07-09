@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block css %}
+   <link rel="stylesheet" href="../static/css/product.css">
+   <link rel="stylesheet" href="../static/css/Anasayfa.css"> 
+{% endblock css %}
+{% block body %}
+     <!-- container div -->
+	<div class="container">
+
+		<!-- upper button section to select
+			the login or signup form -->
+		
+		<div class="btna">
+			<p style="font-size: 30px; text-align: center; margin-top: 13px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Giriş Yap</p>
+		</div>
+
+		
+		<div class="form-sectiona " style="margin-left: 380px;">
+
+			<!-- login form -->
+			<form method="POST">
+				{% csrf_token %}
+				<div class="login-boxa">
+					<input type="text" name="username"
+						class="emaila elea"
+						placeholder="Kullanıcı Adı Veya E-Mail">
+					<input type="password" name="password"
+						class="passworda elea"
+						placeholder="password">
+					<button type="submit" class="clkbtna" href="#">Giriş</button>
+							 <p style="color: white; background-color: black; padding: 20px; border-radius: 10px;">Kayıtlı değilseniz <a href="{% url 'RegisterUser' %}">Buraya Basarak Kayıt Olabilirsiniz</a></p>
+				</div>
+			</form>
+
+			
+		</div>
+	</div>
+{% endblock body %}
+    
+  
+   
